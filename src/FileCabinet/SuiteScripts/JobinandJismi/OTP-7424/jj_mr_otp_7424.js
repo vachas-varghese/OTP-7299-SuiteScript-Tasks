@@ -2,6 +2,30 @@
  * @NApiVersion 2.1
  * @NScriptType MapReduceScript
  */
+/**********************************************************************************
+ * OTP-7424 : Monthly Overdue Remainder for Customer
+ *
+ *
+ * ********************************************************************************
+ *
+ * ********************
+ * company name
+ *
+ * Author: Jobin and Jismi IT Services
+ *
+ *
+ * Date Created: 03-July-2024
+ *
+ * Description: This script is for sending an email remainder to customers who have overdue invoices.
+ *
+ *
+ * REVISION HISTORY
+ *
+ * @version 1.0 company name: 03-July-2024: Created the initial build by JJ0355
+ *
+ *
+ *
+ **************/
 define(['N/email', 'N/file', 'N/log', 'N/record', 'N/search'],
     /**
  * @param{email} email
