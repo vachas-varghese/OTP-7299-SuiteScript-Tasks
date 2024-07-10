@@ -181,22 +181,22 @@ function(log, record, search, dialog) {
         let fieldid=currentrec.fieldId;
         let salesOrderId=currentrec.getValue({
             fieldId: 'createdfrom'
-        });
+        }); //getting internal id of the sales order
         let salesOrder=record.load({
             type: record.Type.SALES_ORDER,
             id: salesOrderId,
             isDynamic: true
-        });
+        }); //loading the sales order
         log.error(salesOrderId);
         let amount=salesOrder.getValue('total');
         let searchresult=search.create({
             type: search.Type.CUSTOMER_DEPOSIT,
             columns: ['internalid','salesorder','amount'],
             filters:['salesorder','anyof',salesOrderId]
-        });
+        }); //creating a search on customer deposit record
         let deposit=0;
         searchresult.run().each(function(result){
-            deposit+=parseInt(result.getValue('amount'));
+            deposit+=parseInt(result.getValue('amount')); //calculating the total deposit amount of the sales order
             return true;
         });
         log.error("deposit:"+deposit);
@@ -208,7 +208,7 @@ function(log, record, search, dialog) {
             });
             return false;
 
-        }
+        } //restricting the save and displaying an dialog message if there is a customer deposit for the sales order but it is less than the sales order amount
         else {
             return true;
         }
