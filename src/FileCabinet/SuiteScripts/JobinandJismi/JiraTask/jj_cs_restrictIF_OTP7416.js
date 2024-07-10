@@ -177,9 +177,9 @@ define(['N/log', 'N/record', 'N/search', 'N/ui/dialog'],
          * @since 2015.2
          */
         function saveRecord(scriptContext) {
-            let currentrec = scriptContext.currentRecord;
-            let fieldid = currentrec.fieldId;
-            let salesOrderId = currentrec.getValue({
+            let currentRec = scriptContext.currentRecord;
+            let fieldid = currentRec.fieldId;
+            let salesOrderId = currentRec.getValue({
                 fieldId: 'createdfrom'
             }); //getting internal id of the sales order
             let salesOrder = record.load({
@@ -189,13 +189,13 @@ define(['N/log', 'N/record', 'N/search', 'N/ui/dialog'],
             }); //loading the sales order
             log.error(salesOrderId);
             let amount = salesOrder.getValue('total');
-            let searchresult = search.create({
+            let searchResult = search.create({
                 type: search.Type.CUSTOMER_DEPOSIT,
                 columns: ['internalid', 'salesorder', 'amount'],
                 filters: ['salesorder', 'anyof', salesOrderId]
             }); //creating a search on customer deposit record
             let deposit = 0;
-            searchresult.run().each(function (result) {
+            searchResult.run().each(function (result) {
                 deposit += parseInt(result.getValue('amount')); //calculating the total deposit amount of the sales order
                 return true;
             });
